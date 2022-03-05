@@ -30,16 +30,30 @@ package com.leetcode;
 public class ChampagneTower {
 
 	public static void main(String[] args) {
-		int poured = 1, 
-			query_row = 1, 
-			query_glass = 1;
+		int poured = 100000009, 
+			query_row = 33,
+			query_glass = 17;
 		
 		System.out.println("Result: " + champagneTower(poured, query_row, query_glass));
 	}
 	
 	public static double champagneTower(int poured, int query_row, int query_glass) {
-        
-		
-		return 0;
+		if (query_row == 0) return Math.min(poured, 1);
+        double [][] pyramid = new double[query_row + 1][query_row + 1];
+        pyramid[0][0] = (double) poured;
+        for (int row = 0; row < query_row; row++) {
+        	for (int colunm = 0; colunm <= row; colunm++) {
+        		double cpoured = (pyramid[row][colunm] - 1) / 2;
+        		if (cpoured > 0) {
+        			pyramid[row + 1][colunm] += cpoured;
+        			pyramid[row + 1][colunm + 1] += cpoured;
+        		}
+        		// System.out.print(pyramid[row][colunm] + "   ");
+        	}
+        	// System.out.print(System.lineSeparator());
+        }
+        // System.out.print(System.lineSeparator());
+		return Math.min(pyramid[query_row][query_glass], 1);
     }
+	
 }
