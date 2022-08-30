@@ -1,8 +1,6 @@
 package com.leetcode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ContainsDuplicate {
 
@@ -29,6 +27,18 @@ public class ContainsDuplicate {
 
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] == nums[i + 1]) return true;
+        }
+        return false;
+    }
+
+    private boolean containDuplicate3(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (set.contains(num)) {
+                return true;
+            }
+            set.add(num);
         }
         return false;
     }
